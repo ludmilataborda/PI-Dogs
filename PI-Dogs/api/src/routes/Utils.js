@@ -9,8 +9,8 @@ const axios = require('axios');
         id: e.id,
         name:e.name,
         image:e.image.url,
-        weight:e.weight,
-        height:e.height,  
+        weight:e.weight.metric.split('-'),
+        height:e.height.metric,  
         life_span:e.life_span, 
         temperaments:e.temperament ? e.temperament.split(',') : e.temperament
       }
@@ -36,8 +36,21 @@ const dbInfo = async () => {
             return []
           }
           else { 
-            return dogbd;
+           const mydog = dogbd.map(e => {
+            e = {
+              id: e.id,
+              name:e.name,
+              image:e.image,
+              weight:e.weight.split('-'),
+              height:e.height,  
+              life_span:e.life_span,
+              createdindb: e.createdindb, 
+              temperaments:e.temperaments 
          }
+            return e;
+        })
+           return mydog 
+      }
       }
   
    const both = async () => {
@@ -54,10 +67,16 @@ Debe devolver solo los datos necesarios para la ruta principal */
 
 const p = async () => {
     const info = await infoapi();
-    const exocc = info.map(e => e.temperaments)
-    const occu = exocc.flat()
-     //  console.log(occu)
-       return occu
+    const exocc = info.map(e => e.temperaments).filter(f=> f !== undefined )
+    const occu = exocc.flat().map(l => l.trim())
+   // const arr = occu(e => e.trim())
+  const s =occu.sort((unaMascota, otraMascota) => unaMascota.localeCompare(otraMascota))
+ 
+  let result = occu.filter((item,index)=>{
+    return occu.indexOf(item) === index;
+  })
+ // console.log(result); //[1,2,6,5,9,'33']
+       return result;
    }
 
 module.exports= {
