@@ -4,8 +4,22 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
+  background-color: rgb(241, 175, 144);
+  opacity: 0.90;
+/*  background-image: url("https://biotechmagazineandnews.com/wp-content/uploads/2019/10/perros.jpg"); */
+  /* background-repeat: repeat;
+  background-attachment: local;
+   rgb(238, 234, 231); */
+
 }
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;  
+
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
