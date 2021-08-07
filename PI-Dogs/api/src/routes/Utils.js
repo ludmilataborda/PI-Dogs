@@ -10,7 +10,7 @@ const axios = require('axios');
         name:e.name,
         image:e.image.url,
         weight:e.weight.metric.split('-'),
-        height:e.height.metric,  
+        height:e.height.metric.split('-'),  
         life_span:e.life_span, 
         temperaments:e.temperament ? e.temperament.split(',') : e.temperament
       }
@@ -42,11 +42,12 @@ const dbInfo = async () => {
               name:e.name,
               image:e.image,
               weight:e.weight.split('-'),
-              height:e.height,  
+              height:e.height.split('-'),  
               life_span:e.life_span,
               createdindb: e.createdindb, 
-              temperaments:e.temperaments 
+              temperaments:e.temperaments.map(e=>e.name) 
          }
+        // console.log(e)
             return e;
         })
            return mydog 

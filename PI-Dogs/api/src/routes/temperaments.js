@@ -10,7 +10,13 @@ const tempera = async () => {
       return {name: e }
   })
   //console.log(dogs)
-  await Temperament.bulkCreate(dogs) 
+const t = await  Temperament.findAll()
+if(!t.length) {
+  const tem = await Temperament.bulkCreate(dogs) 
+    return tem  
+}
+else { return t }
+ 
 }
 
 
