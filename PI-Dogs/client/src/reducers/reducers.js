@@ -1,13 +1,14 @@
 /* import { GET_CHARACTERS,GET_DETAIL,GET_NAMES, FILTER_STATUS, FILTER_CREATED, FILTER_SORT, OCCUPATIONS_TYPES,POST_CHARACTER } from "../actions/actions"; */
-import { GET_DOGS, FILTER_SORTNAME, SORTBY_WEIGHT, FILTER_CREATED, GET_NAMES} from "../actions/actions";
+import { GET_DOGS, FILTER_SORTNAME, SORTBY_WEIGHT, FILTER_CREATED, GET_NAMES,TEMPERAMENT_TYPES, POST_DOGS, GET_DETAIL, FILTER_TEMPERAMENT } from "../actions/actions";
 /* import { filDiets, sorts } from './functions.js' */
-
+import { filDogies } from './functions.js'
 const initialState = {
    
     charaDeatil:{},
      dogs:[], //renderizada
      allDogs:[], // copia
-     occupations:[]
+     temperaments:[],
+     deteail:[]
   };
   
 
@@ -58,32 +59,29 @@ function rootReducer(state= initialState, action){
                   ...state, 
                  dogs: action.payload,        
              }          
-                 /* case OCCUPATIONS_TYPES: 
+         case TEMPERAMENT_TYPES: 
              return {
                  ...state,
-                 occupations: action.payload 
-      } 
-     
-      case GET_DETAIL: 
-            return {
+                 temperaments: action.payload 
+          } 
+         case POST_DOGS: 
+              return {
               ...state,
-             charaDeatil: action.payload 
-      }  
-      case POST_CHARACTER: 
-            return {
-            ...state,
-          }  
-      case FILTER_STATUS:
-        const allCharacters = state.allCharacters
-        const statusFiltered = action.payload === 'All' ? allCharacters : allCharacters.filter(el => el.status === action.payload)
-        return {
-            ...state,
-            characters: statusFiltered
-        }
-        
-                 */
-         default: 
-                  return state;
+           }
+
+         case GET_DETAIL: 
+          return {
+              ...state,
+              deteail: action.payload 
+         }  
+         case FILTER_TEMPERAMENT:
+         // const allD = state.allDogs
+          return {
+              ...state,
+              dogs: action.payload === '...' ? state.allDogs : filDogies(action.payload, state.allDogs)
+          }
+            default: 
+           return state;
    }
 }
 

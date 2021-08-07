@@ -5,11 +5,12 @@ export const FILTER_SORTNAME = 'FILTER_SORTNAME';
 export const SORTBY_WEIGHT = 'SORTBY_WEIGHT';
 export const FILTER_CREATED = 'FILTER_CREATED';
 export const GET_NAMES = 'GET_NAMES';
-/* export const GET_DETAIL ='GET_DETAIL';
-export const OCCUPATIONS_TYPES = 'OCCUPATION_TYPES';
-export const POST_CHARACTER = 'POST_CHARACTER'
+export const TEMPERAMENT_TYPES = 'TEMPERAMENT_TYPES';
+export const POST_DOGS = 'POST_DOGS'
+export const GET_DETAIL ='GET_DETAIL';
+export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
 
- */
+
 
 
 export  function getAllDogs() {
@@ -45,40 +46,43 @@ export function filterByDb(value) {
             });
     }
  };
-/* 
- export  function getCharaDetails(idPersonaje) {
+export function getTemperaments() {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3001/temperament", {
+           }); 
+           return dispatch({type: TEMPERAMENT_TYPES, payload:json.data});
+        }   
+};
+/* export function getCharacters() {
+    return async function (dispatch) {
+      var json = await axios("http://localhost:3001/characters", {
+        
+      });
+      return dispatch({ type: "GET_CHARACTERS", payload: json.data });
+    };
+  } */
+export function postsDogstoBack(value) {
+    return async function(dispatch) {
+       const response= await axios.post('http://localhost:3001/dogs', value)
+          return response 
+    }
+}
+export  function getDogDetails(id) {
     return (dispatch) => {
-       axios.get('http://localhost:3001/character/'+idPersonaje).then((response) => {
+       axios.get('http://localhost:3001/dogs/'+id).then((response) => {
+        console.log(response)
       dispatch({type: GET_DETAIL, payload: response.data});     
       });
      }
     }
-export function getClear() {
+  export function getClear() {
     return {
         type: GET_DETAIL, payload: []
     }
 }
 
-export function filterByStatus(value) {
-    return { type:FILTER_STATUS, 
+export function filterByTemperament(value) {
+    return { type:FILTER_TEMPERAMENT, 
              payload:value }
 }
 
-
-
-export function getOccupations() {
-    return (dispatch) => {
-        return axios.get("http://localhost:3001/occupations")
-          .then((response) => {
-              dispatch({type: OCCUPATIONS_TYPES, payload:response.data});
-          });
-    }
-};
-
-export function postsCharatoBack(value) {
-    return async function(dispatch) {
-       const response= await axios.post('http://localhost:3001/characters', value)
-          return response 
-    }
-}
- */

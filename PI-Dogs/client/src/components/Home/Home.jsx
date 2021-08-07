@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getAllDogs, sortbyNames, sortbyWeight, filterByDb, getNames } from '../../actions/actions';
+import { getAllDogs, sortbyNames, sortbyWeight, filterByDb, getNames, getTemperaments, filterByTemperament } from '../../actions/actions';
 import h from './Home.module.css';
 
 //import { getCharacters,filterByStatus, filterByDb, sortNames, getNames } from '../../actions/actions';
@@ -17,9 +17,11 @@ function Home() {
 
  const dispatch = useDispatch()
  const dogies = useSelector ((state) => state.dogs)
- 
+ const temper = useSelector((state) => state.temperaments)
+
  useEffect (()=>{
     dispatch(getAllDogs());
+    dispatch(getTemperaments())   
 },[dispatch])
 
 const indexOfLastPost = currentPage * postsPerPage;
@@ -57,6 +59,10 @@ function handlefilterweight(e) {
  function handleCreated(e) {
      dispatch(filterByDb(e.target.value))
   }
+
+ function handleSelect(e){
+   dispatch(filterByTemperament(e.target.value))
+ }
   return(
      <div >
         <div className={h.big}>
@@ -67,9 +73,9 @@ function handlefilterweight(e) {
           
          
          <div className = 'searchAndButt'> 
-          {/*   <Link to='/post'>  </Link> */}
-           <button className = 'b1'> Create your own dog</button>
-         
+           <Link to='/post'> 
+              <button className = 'b1'> Create your own dog</button>
+             </Link> 
        
         <form  onSubmit={e => handleSubmit(e)} >
             <label className = 'l1'>Search by name: </label>
@@ -104,18 +110,25 @@ function handlefilterweight(e) {
            <option value='api'>Existing</option>
         </select> 
 
-      
+        <label>Find dog by Temperament:</label>
+            <select   onChange={(e) => handleSelect(e)} >
+            <option key ={596} value={'...'}>...</option>
+             {temper.map((o, i) => (
+             <option key ={i} value={o.name}>{o.name}</option>
+             ))}
+         </select>
+
          <div className = 'all'>
           <ul className='DisplayRecipes'>
-           {currentPosts?.map(p => (
-             <li className = 'lis1' key={p.id}>
-             <div className = 'name1'>
-             <Card  name ={p.name} image = {p.image} temperaments ={p.temperaments} id = {p.id} />  
-                     </div>
-                  </li>
-                ))}
-             </ul>
-            </div>
+             {currentPosts?.map(p => (
+               <li className = 'lis1' key={p.id}>
+                  <div className = 'name1'>
+                   <Card  name ={p.name} image = {p.image} temperaments ={p.temperaments} id = {p.id} />  
+                   </div>
+                </li>
+               ))}
+            </ul>
+          </div>
                </div>
       <div>
        <Pagination postsPerPage ={postsPerPage} totalPosts = {dogies.length} paginate={paginate}/> 

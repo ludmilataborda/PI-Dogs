@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getOccupations, postsCharatoBack } from '../../actions/actions';
+import { getTemperaments, postsDogstoBack} from '../../actions/actions';
 //import axios from 'axios';
 import { NavLink, useHistory } from 'react-router-dom';
 import './Post.css'
@@ -23,71 +23,84 @@ import './Post.css'
 
 function Post() {
 
-/*  const dispatch = useDispatch();
- const history = useHistory()
- const [input, setInput] = useState({
+const dispatch = useDispatch();
+const history = useHistory()
+const [input, setInput] = useState({
     name: '',
-    nickname:'',
-    birthday:'',
-    status:'',
+    life_span:'',
     image:'',
-    createdindb: true,
-    occupation:[]
-  });
- */
+   temperaments:[]
+   // createdindb: true,
+ });
+ const [weight, setWeight] = useState({
+     max:'',
+     min:''
+ })
+ const [height, setHeight] = useState({
+     max:'',
+     min:''
+})
 /*   const [errors, setErrors] = useState({}) */
 
  
- /* useEffect(() => {
-       dispatch(getOccupations())        
+ useEffect(() => {
+       dispatch(getTemperaments())        
   },[dispatch]);
 
-let occ = useSelector((state) => state.occupations);
+let temp = useSelector((state) => state.temperaments);
 
 
 
   function handleChange(e) { 
   setInput({...input, 
     [e.target.name]: e.target.value});
-
  //setErrors(validate({...input,[e.target.name]: e.target.value}));
-}  */
+}  
+function handleWeight (e) { 
+  setWeight({...weight, 
+    [e.target.name]: e.target.value});
 
- /* const handleOnChange = (position) => {
-  let updatedCheckedState = checkedState.map((item, index) =>
-    index === position ? !item && input.dietType.push(index) : item
-  ); */
-/*     setCheckedState(updatedCheckedState); */
+}  
+function handleHeight (e) { 
+  setHeight({...height, 
+    [e.target.name]: e.target.value});
 
-/* function handleCheck(e) {
-  if (e.target.checked){
-    setInput({
-        ...input,
-        status: e.target.value
-    })
-}
-}
+}  
 function handleSelect(e){
   setInput({
       ...input,
-      occupation: [...input.occupation,e.target.value]
+      temperaments: [...input.temperaments,e.target.value]
   })
 }
+
 function handleSubmit(e) {
-  e.preventDefault() 
-  console.log(input)
- dispatch(postsCharatoBack(input))  
- alert("Personaje creado!!")
+  e.preventDefault()
+   
+  const send = {
+    ...input, 
+    weight: weight.min + ' - ' + weight.max,
+    height: height.min + ' - ' + height.max
+   }
+
+   console.log(send)
+   dispatch(postsDogstoBack(send))  
+   alert("Personaje creado!!")
     setInput({
         name:" ",
-        nickname: '',
-        birthdate: '',
-        status: '',
-        image: '',
-        occupation:[]  
-    }) 
+        life_span:'',
+         image:'',
+        temperaments:[]
+    })
+    setWeight({
+      max:'',
+      min:''
+   })
+    setHeight({
+      max:'',
+      min:''
+    })
     history.push('/home')
-} */
+} 
  /*  if(loading) {
       return <h2>Loading...</h2>
   } */
@@ -103,121 +116,99 @@ function handleSubmit(e) {
          </div>
 
           
-             <form /* onSubmit={(e)=>handleSubmit(e)} */>
+             <form  onSubmit={(e)=>handleSubmit(e)}>
              <div className= 'form'>
 
-         
-              <div className = 'v1'> 
+             <div className = 'v1'> 
              <label >Name: </label> 
              <input
               className = 'z1'
-           /*      className = {errors.name ? 'danger' : 'z1'} */
-			        	name='name'
-                type= 'text'
-			        /* 	value={input.name}
-			    	   onChange={(e)=>handleChange(e)} */
-			    	    placeholder='Recipe Name'
+           /* className = {errors.name ? 'danger' : 'z1'} */
+			        name='name'
+              type= 'text'
+			        value={input.name}
+			    	  onChange={(e)=>handleChange(e)} 
+			    	  placeholder='Name'
 		         />
             {/*   {errors.name && (<p className="danger">{errors.name}</p>)} */}
-             </div>
+           </div>
              
-              <div className = 'v3'>
-              <label>Nickname:</label> 
-                 <input
-                /*    className = {errors.dishResume ? 'danger' : 'z3'} */
-                   className = 'z3'
-                   type= 'text'
-				           name='nickname'
-				         /*   value={input.nickname}
-				           onChange={(e)=>handleChange(e)} */
-			          	 placeholder='nickname'
-		              />
-                 {/*   {errors.dishResume && (<p className="danger">{errors.dishResume}</p>)} */}
-             </div>
-
-             <div className = 'v4'>
-            <label>Birthday</label> 
+           <div className = 'v3'>
+           <label>Life span:</label> 
               <input
-                className ='z4'
-                type= 'text'
-			        	name='birthday'
-			    	    /* value={input.birthday}
-				        onChange={(e)=>handleChange(e)} */
-				        placeholder='birthday'
-		         	/>
-            </div>
-
-            <div className = 'v5'>
-            <label>status:</label> 
-                <label><input
-                    type="checkbox"
-                    name="Alive"
-                   /*  value= "Alive"
-                    onChange={(e)=>handleCheck(e)} */
-                    />Alive</label>
-
-                <label><input
-                    type="checkbox"
-                    name="Deceased"
-                    value= "Deceased"
-                  /*   onChange={(e)=>handleCheck(e)} */
-                    />Deceased</label>
-
-                <label><input
-                    type="checkbox"
-                    name="Unknown"
-                    value= "Unknown"
-                  /*   onChange={(e)=>handleCheck(e)} */
-                    />Unknown</label>
-
-                  <label><input
-                    type="checkbox"
-                    name="Presumed dead"
-                    value= "Presumed dead"
-/*                     onChange={(e)=>handleCheck(e)} */
-                    />Presumed dead</label>
-		      </div>
-
-          <div className = 'v6'>
-            <label>Image:</label> 
-		     	<input
-           className='z6'
-			   	   name='image'/* 
-			      	value={input.image}
-			        onChange={(e)=>handleChange(e)} */
-			   	   placeholder='image'
-			        />
+                  /*className = {errors.dishResume ? 'danger' : 'z3'} */
+                  className = 'z3'
+                  type= 'text'
+				          name='life_span'
+				          value={input.life_span}
+				          onChange={(e)=>handleChange(e)} 
+			            placeholder='years'
+		            />
+         {/*   {errors.dishResume && (<p className="danger">{errors.dishResume}</p>)} */}
              </div>
-  
-             {/* <div className = 'v2'>
-            <label>Status: </label>
-               <ul className="u8">
-                  {diets.map((e , index) => {
-               return (
-                      <div >
-                <li className='listd1' key={index +1}>
-     */}
-              {/*   <input
-               type="checkbox"
-                id={index}
-                name={e.name}
-                value={e.name}
-                checked={checkedState[index]}
-                onChange={() => handleOnChange(index)} 
-                  />
-             <label htmlFor={`custom-checkbox-${index}`}>{e.name}</label>
-                   </li>
-                 </div>
-                   );
-               })}
-              </ul>
-              </div> */}
-              <select /* onChange={(e) => handleSelect(e)} */>
-               {/* {occ.map((o) => (
-                   <option value={o.name}>{o.name}</option>
-                ))} */}
+
+               <div className = 'v4'> 
+               <h4>Weight:</h4> 
+               <label>min</label>
+               <input
+                 className ='z3'
+                 type= 'text'
+			           name='min'
+			    	     value={weight.min}
+				         onChange={(e)=>handleWeight(e)} 
+				         placeholder='min'
+		         	   />
+                <label>max</label>
+               <input
+                 className ='z3'
+                 type= 'text'
+			           name='max'
+			    	     value={weight.max}
+				         onChange={(e)=>handleWeight(e)} 
+				         placeholder='max'
+		         	  />
+            </div>
+            
+            <div className = 'v4'> 
+               <h4>Height:</h4> 
+               <label>min</label>
+               <input
+                 className ='z3'
+                 type= 'text'
+			           name='min'
+			    	     value={height.min}
+				         onChange={(e)=>handleHeight(e)} 
+				         placeholder='min'
+		         	   />
+                <label>max</label>
+               <input
+                 className ='z3'
+                 type= 'text'
+			           name='max'
+			    	     value={height.max}
+				         onChange={(e)=>handleHeight(e)} 
+				         placeholder='max'
+		         	  />
+            </div>
+          
+              <div className = 'v6'>
+              <label>Image:</label> 
+		     	    <input
+               className='z6'
+			   	      name='image'
+			          value={input.image}
+			          onChange={(e)=>handleChange(e)}
+			   	      placeholder='image'
+			         />
+          </div>
+               
+              <label>Choose Temperaments:</label>
+              <select  onChange={(e) => handleSelect(e)}>
+               {temp.map((o, i) => (
+                   <option key ={i} value={o.name}>{o.name}</option>
+                ))}
                 </select>
-              {/*   <ul><li>{input.occupation.map(el => el + " ,")}</li></ul> */}
+                <ul><li>{input.temperaments.map(el => el + " ,")}</li></ul> 
 
             <button className='b8' type="submit">send</button>  
 			  </div> 
@@ -229,3 +220,12 @@ function handleSubmit(e) {
     );
 }
 export default Post;  
+/* ruta de creación de raza de perro: debe contener
+
+[ ] Un formulario controlado con los siguientes campos
+Nombre
+Altura (Diferenciar entre altura mínima y máxima)
+Peso (Diferenciar entre peso mínimo y máximo)
+Años de vida
+[ ] Posibilidad de seleccionar/agregar uno o más temperamentos
+[ ] Botón/Opción para crear una nueva raza de perro */
