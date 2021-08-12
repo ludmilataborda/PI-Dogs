@@ -66,32 +66,36 @@ function handlefilterweight(e) {
   return(
      <div >
         <div className={h.big}>
-         <h1>Dogs</h1>
-          <button onClick={e=> {handleClick(e)}}>
-              All dogs
-           </button>
-          
-         
-         <div className = 'searchAndButt'> 
+         <p className = {h.hD}>Dogs</p>
+
+       <div className ={h.searchAndButt} > 
+
            <Link to='/post'> 
-              <button className = 'b1'> Create your own dog</button>
-             </Link> 
-       
-        <form  onSubmit={e => handleSubmit(e)} >
-            <label className = 'l1'>Search by name: </label>
-            <input
-             className= 'i1'
-              name='name'
-              type= 'text'
-              value={input}
-              onChange={e =>handleChange(e)} 
-              placeholder='name'
+           {/*    <button className = 'b1'> Create your own dog</button> */}
+              <button type="button" className={h.slide}>
+             <div> Create your own dog</div>
+          <i className="icon-arrow-right"></i>  {/**/}
+           </button>
+             </Link>   
+          
+       <button className={h.fill} onClick={e=> {handleClick(e)}}>
+               All dogs
+           </button>
+           <form  onSubmit={e => handleSubmit(e)} >
+              <label className = {h.l1}>Search by name: </label>
+             <input
+              className= {h.i1}
+               name='name'
+               type= 'text'
+               value={input}
+               onChange={e =>handleChange(e)} 
+               placeholder='name'
               />
-            <button className ='b2' type="submit">Search</button> 
-      
-         </form> 
+             <button className ={h.b2} type="submit">Search</button> 
+          </form> 
+
       </div> 
- 
+      <div className={h.div1}>
          <label>Order by name</label>
          <select  onChange={e => handleSort(e)} >
              <option value= 'asc'>a-z</option>
@@ -104,11 +108,12 @@ function handlefilterweight(e) {
             <option value= 'desc'>desc</option>
         </select>
 
-         <select  onChange= {e=> handleCreated(e)} >
+        <label> Created</label>
+          <select  onChange= {e=> handleCreated(e)} >
             <option value='All'>All</option>
             <option value= 'created'>Created</option>
-           <option value='api'>Existing</option>
-        </select> 
+            <option value='api'>Existing</option>
+         </select> 
 
         <label>Find dog by Temperament:</label>
             <select   onChange={(e) => handleSelect(e)} >
@@ -117,9 +122,9 @@ function handlefilterweight(e) {
              <option key ={i} value={o.name}>{o.name}</option>
              ))}
          </select>
-
-         <div className = 'all'>
-          <ul className='DisplayRecipes'>
+      </div>
+         <div className = {h.all}>
+          <ul className= {h.displayCards}>
              {currentPosts?.map(p => (
                <li className = 'lis1' key={p.id}>
                   <div className = 'name1'>

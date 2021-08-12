@@ -5,17 +5,9 @@ import { Link } from 'react-router-dom';
 function LandingPage() {
   return (
     <>
- {/*    <div className={s.App}>
-    <div className={s.tyb}>
-      <h1 className= {s.t}>Welcome !</h1> */}
 
-         {/* <Link to='/home'>
-           <button /* className={s.button} */ /* > HOME</button> */} 
-          {/* </Link>
-          </div>
-         </div> */}
-         
-        <h1>
+   <div className={s.App}>
+        <h4>
           <span>W</span>
           <span>E</span>
           <span>L</span>
@@ -24,14 +16,32 @@ function LandingPage() {
           <span>M</span>
           <span>E</span>
           <span>!</span>
-          </h1> 
-       
+          </h4> 
 
-        
-       <div >
-     {/*   <img className ={s.res} src="https://biotechmagazineandnews.com/wp-content/uploads/2019/10/perros.jpg" alt={"img"}/>  */}
+      {/*    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" /> */}
+      
+      
+         <Link to='/home'>
+        <button type="button" className={s.fill}>HOME</button>
+          {/*  <button id={s.foot}><button className={s.button1}><a href="#">HOME</a></button></button> */}
+           </Link>
+
+
+
+
+
+
+{/* <button type="button" className={s.slide}>
+  <div>Slide</div>
+  <i className="icon-arrow-right"></i>
+</button> */}
+   
+
+       <div className={s.im}>
+       <img className ={s.res} src="https://vidaconmascotas.com/wp-content/uploads/2021/03/%C2%BFCuantas-razas-de-perros-existen-en-el-mundo-Todos-los.jpg" alt={"img"}/>  
       </div>
-     
+      </div>
      </>
   );
 }

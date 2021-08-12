@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, postsDogstoBack} from '../../actions/actions';
 //import axios from 'axios';
-import { NavLink, useHistory } from 'react-router-dom';
-import './Post.css'
+import { Link, useHistory } from 'react-router-dom';
+import i from'./Post.module.css'
 
 
 
@@ -84,7 +84,7 @@ function handleSubmit(e) {
 
    console.log(send)
    dispatch(postsDogstoBack(send))  
-   alert("Personaje creado!!")
+   alert("Dog created!!")
     setInput({
         name:" ",
         life_span:'',
@@ -106,16 +106,16 @@ function handleSubmit(e) {
   } */
 
     return (
-      <div className='post'>
+      
 
-        <div className = 'h1yb'>
-           <NavLink to='/home' >
-            <button className = 'b5'>BACK</button>
-            </NavLink>
-            <h2 className = 't6'>Fill to create your own dog</h2>
-         </div>
+        <div className={i.byf}>
+           <Link to='/home' >
+            <button className={i.fill}> BACK </button>
+            </Link>
 
-          
+        <div className={i.post}>
+         <div clasName={i.cont}>
+               <h2 className = 't6'>Fill to create your own dog</h2>
              <form  onSubmit={(e)=>handleSubmit(e)}>
              <div className= 'form'>
 
@@ -148,7 +148,7 @@ function handleSubmit(e) {
              </div>
 
                <div className = 'v4'> 
-               <h4>Weight:</h4> 
+               <h4 className={i.t}>Weight:</h4> 
                <label>min</label>
                <input
                  className ='z3'
@@ -214,9 +214,9 @@ function handleSubmit(e) {
 			  </div> 
           </form> 
          
-
         </div>
-
+         </div>
+      </div>
     );
 }
 export default Post;  

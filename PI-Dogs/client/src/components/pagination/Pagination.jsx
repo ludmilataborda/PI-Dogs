@@ -1,5 +1,5 @@
 import React from 'react';
-import './pagination.css'
+import p from'./pagination.module.css'
 
 
 function Pagination({postsPerPage, totalPosts, paginate}) {
@@ -9,13 +9,13 @@ function Pagination({postsPerPage, totalPosts, paginate}) {
       pageNumbers.push(i);
   }
     return (
-      <div className='paginationDiv'>
+      <div className={p.paginationDiv}>
       <nav > 
-          <ul className= 'pagination'>
+          <ul className= {p.pagination}>
               {pageNumbers.map((n,i )=> (
-                  <div className = 'center'>
+                  <div className = {p.center}>
                   <li key={i +1}>
-                      <button className='numberStyles' onClick ={ () => paginate(n)} >
+                      <button className={p.numberStyles} onClick ={ () => paginate(n)} >
                           {n}
                       </button>
                   </li>

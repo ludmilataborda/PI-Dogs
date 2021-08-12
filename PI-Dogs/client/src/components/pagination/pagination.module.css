@@ -21,19 +21,19 @@
     width: 40px;
 }
 .numberStyles { 
-    color: rgb(209, 198, 198);
+    color:black;
     font-family: 'Montserrat', sans-serif;
     font-size: 17px;
-    font-weight: 600;
+    font-weight:10;
      margin-bottom:60px;
-     background-color: rgb(124, 171, 164);
-    border: 2px solid rgb(15, 103, 90);
+     background-color:#D0D1FF;
+   /*  border: 1px solid black; */
 }
 
   
     
  .numberStyles:hover {
-            color:rgb(59, 3, 40);
+            color:black;
             background-color: rgb(169, 214, 229);
             border: 2px solid rgb(132, 205, 230);
         }

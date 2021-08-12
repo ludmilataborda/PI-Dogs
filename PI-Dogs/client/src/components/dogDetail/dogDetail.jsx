@@ -53,7 +53,7 @@ function Detail () {
 
         <div className = 'divDietsNames'>
            <h5>Temperamets:</h5>
-             {dog[0].temperaments ?.map((f,i) =>(f.name ? <p key = {i}>{f.name}</p>: <p key ={i}>{f}</p>))}  
+             {dog[0].temperaments?.map((f,i) =>(f.name ? <p key = {i}>{f.name}</p>: <p key ={i}>{f}</p>))}  
           </div>
        {/*<div className = 'dietypes2'>
       {charaDet.occupation ?charaDet.occupation.map((f,i) =>  (f.name ? <p key = {i}>{f.name}</p>: <p key ={i}>{f}</p>)) : <> </>} 
