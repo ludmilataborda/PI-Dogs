@@ -18,5 +18,27 @@ describe('Dog model', () => {
         Dog.create({ name: 'Pug' });
       });
     });
+     describe('weight', () => {
+      it('should throw an error if weight is null', (done) => {
+        Dog.create({})
+          .then(() => done(new Error('It requires a valid weight')))
+          .catch(() => done());
+      });
+      it('should work when its text', () => {
+        Dog.create({ name: 'Mi perri', weight:'15-16' });
+      }); 
+      it('should throw an error if weight is not a string', (done) => {
+        Dog.create({ name: 'Mi perri', weight:15-16 })
+          .then(() => done(new Error('weight must be a string')))
+          .catch(() => done());
+      });
+    });
+    describe('image', () => {
+      it('should work if image is not passed', () => {
+       Dog.create({ name: 'Mi perri', weight:'15-16'})
+      });
+     
+    }); 
   });
 });
+

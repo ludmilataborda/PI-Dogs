@@ -22,7 +22,7 @@ router.get('/', async function(req, res) {
          //SI NO TENGO QUERY
         if(!name) {  
              console.log('dogies ', all.length)
-             return res.send(dogsToSend)
+             return res.status(200).send(dogsToSend)
          }
         //SI TENGO QUERY     
          else {
@@ -43,7 +43,7 @@ router.get('/', async function(req, res) {
 router.post('/',async function(req, res) {
     const {name, height,weight,life_span,image,createdindb, temperaments} = req.body;
        
-    const dogCreated = await Dog.create({
+  try{  const dogCreated = await Dog.create({
                name,
                height,
                weight,
@@ -51,13 +51,19 @@ router.post('/',async function(req, res) {
                image,
                createdindb
          }); 
-       
+     if(temperaments) { 
         let tempOndb= await Temperament.findAll({where: {
            name: temperaments
          } })
          dogCreated.addTemperament(tempOndb) 
+        return res.send('dog created with temperaments!')
+       }
+     else { return res.send('dog created'); } 
+     
+    }catch(error) {
+        console.log(error)
+      }
        
-         res.send('dog created'); 
        });
 
  router.get('/:idRaza', async function(req, res) {
@@ -78,3 +84,30 @@ router.post('/',async function(req, res) {
  });
 
 module.exports =  router;
+
+
+/* try{  const a= await Recipe.findOne({
+    where: {
+        id: idReceta },
+    include: Dietype
+    })
+  
+   let b= a.dataValues
+  // console.log(a)
+   let dbRecipe = {
+     name: b.name,
+     summaryARREGLAR: b.dishResume ,
+     score: b.score,
+     healthScore: b.healthScore ,
+     instructions: b.instructions,
+     dietypes: b.dietypes.map(e => e.dataValues.name)
+   } 
+
+   
+   //console.log(dbRecipe)
+    return res.send(dbRecipe)
+   } catch(error) {
+     console.log(error)
+     return res.send('no existe receta')
+   }
+} */

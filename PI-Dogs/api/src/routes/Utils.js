@@ -1,5 +1,7 @@
 const { Dog, Temperament} = require('../db.js');
 const axios = require('axios');
+const { YOUR_API_KEY } = process.env;
+
 const lbtoKg = (weight) =>{ 
   let weight1 = weight.split(" - ") //divido el string que recibo como dato
   var a,b;
@@ -11,7 +13,7 @@ const lbtoKg = (weight) =>{
   return fw;
 }
  const infoapi = async () => {
-    const obj = await axios.get('https://api.thedogapi.com/v1/breeds'); 
+    const obj = await axios.get('https://api.thedogapi.com/v1/breeds?api_key=' + YOUR_API_KEY); 
    const results = obj.data
     let arr= results.map(e => {
       e = {
@@ -29,18 +31,11 @@ const lbtoKg = (weight) =>{
   return arr;  
 
   } 
-// infoapi()
-const mydof = async () => {
-  const a  =  await infoapi()
-  const b = a.map(e => e.weight)
-   console.log(b)
-   }  
 
-  mydof()
-// Funcion para pasar la data de libras a kilos, sera usada en mapDogs
+
 
 const dbInfo = async () => {
-    const dogbd = await Dog.findAll({
+  try {  const dogbd = await Dog.findAll({
         include:{
            model: Temperament,
            attributes: ['name'],
@@ -60,40 +55,40 @@ const dbInfo = async () => {
               image:e.image,
               weight:e.weight.split('-'),
               height:e.height.split('-'),  
-              life_span:e.life_span,
+              life_span:e.life_span + ' years',
               createdindb: e.createdindb, 
-              temperaments:e.temperaments.map(e=>e.name) 
+              temperaments:e.temperaments ? e.temperaments.map(e=>e.name) : [] 
          }
         // console.log(e)
             return e;
         })
            return mydog 
       }
+    } catch(error) {
+      console.log(error)
+     
+    }
       }
   
-   const both = async () => {
+const both = async () => {
     const info = await infoapi();
     const db = await dbInfo();
     const unidos = db.concat(info)
     return unidos;
   } 
 
-/* 
-[ ] GET /dogs:
-Obtener un listado de las razas de perro
-Debe devolver solo los datos necesarios para la ruta principal */
+
 
 const p = async () => {
     const info = await infoapi();
     const exocc = info.map(e => e.temperaments).filter(f=> f !== undefined )
     const occu = exocc.flat().map(l => l.trim())
-   // const arr = occu(e => e.trim())
+   
   const s =occu.sort((unaMascota, otraMascota) => unaMascota.localeCompare(otraMascota))
  
   let result = occu.filter((item,index)=>{
     return occu.indexOf(item) === index;
   })
- // console.log(result); //[1,2,6,5,9,'33']
        return result;
    }
 
