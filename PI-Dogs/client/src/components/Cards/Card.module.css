@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarpanch&display=swap');
 .pic { 
     width:170px;
     height: 170px;
@@ -7,11 +8,11 @@
 .name1 {
   /*   border: 1px solid black; */
     width: 190px;
-    height: 330px;
+    height: 350px;
      display: flex;
     flex-direction: column; 
     margin-top: 20px;
-    background-color: white;
+    background-color:hsl(9, 32%, 92%);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
@@ -21,28 +22,30 @@
     border-bottom-left-radius: 10px;
     animation-name: example;
     animation-duration: 0.25s;
-    border-left: 8px solid hsl(30, 64%, 63%);
+    border-left: 8px solid hsl(8, 75%, 69%);
     box-shadow: 0 14px 24px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
    transform: scale(1.1) translate(1px, 2px);
 }
 .name {
-    font-family: "Roboto Mono", monospace;
+    font-family: 'Sarpanch', sans-serif;
     color: black;
+    font-weight: 600; 
 }
 .divDietsNames {
     color:black;
-    font-family:"Roboto Mono", monospace;;
+    font-family: 'Sarpanch', sans-serif;
     font-size: 12px;
-    font-weight: 600; 
+    font-weight: 200; 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding-top: 0px;
     justify-content: space-around;
 }
 
 @keyframes example {
     0%  { border-left: 2px solid #ffffff;}
     25%  { border-left: 3px solid #ffe6e6;}
-    50%  { border-left: 4px solid #dcb66fe1;}
-    100%  { border-left: 5px solid #d8966a;}
+    50%  { border-left: 4px solid #dcbc82e1;}
+    100%  { border-left: 5px solid #d6ab8e;}
 }

@@ -9,12 +9,11 @@ function Pagination({postsPerPage, totalPosts, paginate}) {
       pageNumbers.push(i);
   }
     return (
-      <div className={p.paginationDiv}>
       <nav > 
           <ul className= {p.pagination}>
               {pageNumbers.map((n,i )=> (
                   <div className = {p.center}>
-                  <li key={i +1}>
+                  <li key={i }>
                       <button className={p.numberStyles} onClick ={ () => paginate(n)} >
                           {n}
                       </button>
@@ -23,7 +22,7 @@ function Pagination({postsPerPage, totalPosts, paginate}) {
               ))}
           </ul>
       </nav>
-      </div>
+    
     );
   }
   

@@ -1,14 +1,14 @@
-/* import { GET_CHARACTERS,GET_DETAIL,GET_NAMES, FILTER_STATUS, FILTER_CREATED, FILTER_SORT, OCCUPATIONS_TYPES,POST_CHARACTER } from "../actions/actions"; */
-import { GET_DOGS, FILTER_SORTNAME, SORTBY_WEIGHT, FILTER_CREATED, GET_NAMES,TEMPERAMENT_TYPES, POST_DOGS, GET_DETAIL, FILTER_TEMPERAMENT } from "../actions/actions";
-/* import { filDiets, sorts } from './functions.js' */
+
+import { GET_DOGS, FILTER_SORTNAME, SORTBY_WEIGHT, FILTER_CREATED, GET_NAMES,TEMPERAMENT_TYPES, POST_DOGS, GET_DETAIL, FILTER_TEMPERAMENT, PRUEBA } from "../actions/actions";
 import { filDogies } from './functions.js'
+
 const initialState = {
-   
     charaDeatil:{},
      dogs:[], //renderizada
      allDogs:[], // copia
      temperaments:[],
-     deteail:[]
+     deteail:[],
+     prueba1:[]
   };
   
 
@@ -36,10 +36,10 @@ function rootReducer(state= initialState, action){
 
          case SORTBY_WEIGHT:
             const sorts2 = (str, arr) => {
-                 if(str === 'asc') {
+                 if(str === 'desc') {
                     return arr.sort((unaMascota, otraMascota) => otraMascota.weight[1] - unaMascota.weight[1]);
                  }
-                 if(str === 'desc') {
+                 if(str === 'asc') {
                    return arr.sort((unaMascota, otraMascota) => unaMascota.weight[1] - otraMascota.weight[1]);  
                     }
                  };
@@ -49,10 +49,10 @@ function rootReducer(state= initialState, action){
                  } 
                
           case FILTER_CREATED:
-            const created = action.payload === 'created' ? state.dogs.filter(el => el.createdindb) : state.allDogs.filter(el => !el.createdindb)
+            const created = action.payload === 'created' ? state.allDogs.filter(el => el.createdindb) : state.allDogs.filter(el => !el.createdindb)
              return {
               ...state,
-                dogs: action.payload === 'All' ? state.allDogs : created
+                dogs: action.payload === 'All' ? state.allDogs : created.length ? created : [{name : 'Dog does not exist'}]
             }
        
           case GET_NAMES: return {
@@ -80,6 +80,11 @@ function rootReducer(state= initialState, action){
               ...state,
               dogs: action.payload === '...' ? state.allDogs : filDogies(action.payload, state.allDogs)
           }
+          case PRUEBA: 
+           return {
+              ...state,
+              prueba1:action.payload
+           }
             default: 
            return state;
    }

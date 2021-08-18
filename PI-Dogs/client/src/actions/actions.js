@@ -10,16 +10,33 @@ export const POST_DOGS = 'POST_DOGS'
 export const GET_DETAIL ='GET_DETAIL';
 export const FILTER_TEMPERAMENT ='FILTER_TEMPERAMENT';
 
-
-
+export const PRUEBA = 'PRUEBA';
+/* 
+export function getAlldogsAsyncAawit() {
+    return (dispatch)=> {
+  axios.get("http://localhost:3001/temperament").then((response) => {
+    dispatch({type: PRUEBA, payload:response.data })
+  }) 
+    }
+} */
 
 export  function getAllDogs() {
     return (dispatch) => {
        axios.get('http://localhost:3001/dogs').then((response) => {
       dispatch({type: GET_DOGS, payload: response.data});     
-      });
+      })
+      .catch(error => {
+        console.log(error)
+      }) 
      }
-    }
+}
+export function getTemperaments() {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3001/temperament", {
+           }); 
+           return dispatch({type: TEMPERAMENT_TYPES, payload:json.data});
+        }   
+};
 
  export function sortbyNames(order) {
     return {
@@ -39,42 +56,57 @@ export function filterByDb(value) {
              payload:value }
 }
   export function getNames(name) {
+   
        return (dispatch) => {
-        return axios.get("http://localhost:3001/dogs?name="+name)
-            .then((response) => {
+       return axios.get("http://localhost:3001/dogs?name="+name)
+       .then((response) => {
                 dispatch({ type: GET_NAMES, payload:response.data });
-            });
+            })
+
+       .catch(error => {
+         if(error.response?.status) {
+            
+             if(error.response.status === 400) {
+                 return dispatch({type: GET_NAMES, payload:[{name:'Dog does not exist'}]})
+             }
+         } 
+       })
     }
  };
-export function getTemperaments() {
-    return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/temperament", {
-           }); 
-           return dispatch({type: TEMPERAMENT_TYPES, payload:json.data});
-        }   
-};
-/* export function getCharacters() {
-    return async function (dispatch) {
-      var json = await axios("http://localhost:3001/characters", {
-        
-      });
-      return dispatch({ type: "GET_CHARACTERS", payload: json.data });
-    };
-  } */
+
 export function postsDogstoBack(value) {
     return async function(dispatch) {
-       const response= await axios.post('http://localhost:3001/dogs', value)
+     try{ const response= await axios.post('http://localhost:3001/dogs', value)
           return response 
+    }  catch(error) {
+        console.log(error)
+      }
     }
 }
 export  function getDogDetails(id) {
     return (dispatch) => {
        axios.get('http://localhost:3001/dogs/'+id).then((response) => {
-        console.log(response)
+       // console.log(response)
       dispatch({type: GET_DETAIL, payload: response.data});     
-      });
-     }
+      })
+      .catch(error => {
+        if(error.response?.status) {
+           
+            if(error.response.status === 400) {
+                return dispatch({type: GET_DETAIL, payload:'Dog does not exist'})
+            }
+        } 
+      })
+     };
     }
+/* export function getAlldogsAsyncAawit(id) {
+        return async function(dispatch) {
+       var response = await axios.get('http://localhost:3001/dogs/'+id, {   
+        });
+         return dispatch({type:PRUEBA, payload:response.data})
+        }
+    } */
+ 
   export function getClear() {
     return {
         type: GET_DETAIL, payload: []
@@ -86,3 +118,4 @@ export function filterByTemperament(value) {
              payload:value }
 }
 
+  

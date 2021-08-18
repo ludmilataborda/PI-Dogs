@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { getAllDogs, sortbyNames, sortbyWeight, filterByDb, getNames, getTemperaments, filterByTemperament } from '../../actions/actions';
 import h from './Home.module.css';
 
-//import { getCharacters,filterByStatus, filterByDb, sortNames, getNames } from '../../actions/actions';
 import Card from '../Cards/Card';
 import Pagination from '../pagination/Pagination';
 
@@ -21,7 +20,7 @@ function Home() {
 
  useEffect (()=>{
     dispatch(getAllDogs());
-    dispatch(getTemperaments())   
+    dispatch(getTemperaments())  
 },[dispatch])
 
 const indexOfLastPost = currentPage * postsPerPage;
@@ -66,15 +65,16 @@ function handlefilterweight(e) {
   return(
      <div >
         <div className={h.big}>
-         <p className = {h.hD}>Dogs</p>
+         <h3>
+            <span className = {h.hD1}>Dogs</span></h3>
 
        <div className ={h.searchAndButt} > 
 
            <Link to='/post'> 
-           {/*    <button className = 'b1'> Create your own dog</button> */}
+         
               <button type="button" className={h.slide}>
              <div> Create your own dog</div>
-          <i className="icon-arrow-right"></i>  {/**/}
+          <i className="icon-arrow-right"></i> 
            </button>
              </Link>   
           
@@ -96,32 +96,37 @@ function handlefilterweight(e) {
 
       </div> 
       <div className={h.div1}>
-         <label>Order by name</label>
-         <select  onChange={e => handleSort(e)} >
+         <div>
+         <label className={h.lab}>Order by name: </label>
+         <select className={h.select1}  onChange={e => handleSort(e)} >
              <option value= 'asc'>a-z</option>
              <option value= 'desc'>z-a</option>
          </select>
-
-         <label>Order by weight</label>
-          <select  onChange= {e=> handlefilterweight(e)} >
+          </div>
+          <div>
+         <label className={h.lab}>Order by weight: </label>
+          <select className={h.select1}  onChange= {e=> handlefilterweight(e)} >
             <option value= 'asc'>asc</option>
             <option value= 'desc'>desc</option>
         </select>
-
-        <label> Created</label>
-          <select  onChange= {e=> handleCreated(e)} >
+          </div>
+          <div>
+        <label className={h.lab}> Created: </label>
+          <select className={h.select1} onChange= {e=> handleCreated(e)} >
             <option value='All'>All</option>
             <option value= 'created'>Created</option>
             <option value='api'>Existing</option>
          </select> 
-
-        <label>Find dog by Temperament:</label>
-            <select   onChange={(e) => handleSelect(e)} >
+         </div>
+         <div>
+        <label  className={h.lab}>Find dog by Temperament:  </label>
+            <select className={h.select2}  onChange={(e) => handleSelect(e)} >
             <option key ={596} value={'...'}>...</option>
              {temper.map((o, i) => (
              <option key ={i} value={o.name}>{o.name}</option>
              ))}
          </select>
+         </div>
       </div>
          <div className = {h.all}>
           <ul className= {h.displayCards}>
@@ -135,7 +140,7 @@ function handlefilterweight(e) {
             </ul>
           </div>
                </div>
-      <div>
+               <div className={h.paginationDiv}>
        <Pagination postsPerPage ={postsPerPage} totalPosts = {dogies.length} paginate={paginate}/> 
       </div>
 </div>

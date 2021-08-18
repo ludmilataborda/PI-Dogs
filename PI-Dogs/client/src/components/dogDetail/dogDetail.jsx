@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDogDetails, getClear } from '../../actions/actions';
+import a from './detail.module.css'
 
 import { NavLink, useParams  } from 'react-router-dom';
 
 function Detail () {
-    //const [loading, setLoading] = useState(false);
-    const {id} = useParams()
-    
+
+ const {id} = useParams()  
  const dispatch = useDispatch();
 
-   useEffect(() => { 
-    // setLoading(true)
-      dispatch(getDogDetails(id))  
-     // setLoading(false)      
-     return () => dispatch(getClear())
+   useEffect(() => {  
+    dispatch(getDogDetails(id))  
+    return () => dispatch(getClear())
+  
   },[id, dispatch]);
 
  const dog = useSelector((state) => state.deteail);
@@ -24,47 +23,45 @@ function Detail () {
   return (
     <div className = 'recipe1'>
        
-     <div className = 'tyb'>
-
-      <NavLink to='/home' >
-        <button className = 'b5'> BACK</button>
-      </NavLink>
-      </div> 
-      
-      {dog.length === 1 ? 
+      { typeof dog === 'string'? <h1>{dog}</h1> : dog.length === 1 ? 
          <div> 
-         <h2 className = 't4'>{dog[0].name}</h2> 
+      
+        <NavLink to='/home' >
+          <button className = {a.fill}> BACK</button>
+         </NavLink>
 
-        <img className='pic2'  src={dog[0].image ? dog[0].image :'https://t1.uc.ltmcdn.com/images/7/6/6/img_como_dibujar_un_perro_adorable_38667_600.jpg'} alt="img"/> 
+         <div className ={a.byna}>
+         <h2 className ={a.name}>{dog[0].name}</h2> 
+      
+       <div className ={a.post}>
+        <img className={a.pic2}  src={dog[0].image ? dog[0].image :'https://t1.uc.ltmcdn.com/images/7/6/6/img_como_dibujar_un_perro_adorable_38667_600.jpg'} alt="img"/> 
 
-        {dog[0].life_span ? <h4 className = 't4'>Life span: {dog[0].life_span}</h4> : <></> } 
-         
+        {dog[0].life_span ? <h5 className = {a.title1}>Life span: {dog[0].life_span}</h5> : <></> } 
+         <div className={a.cont}> 
         {dog[0].height ?<div>
-           <h4>Height</h4>
-            <p>min: {dog[0].height[0]}</p>
-            <p>max: {dog[0].height[1]}</p>
+           <h5  className = {a.title}>Height</h5>
+            <p className = {a.ti}>min: {dog[0].height[0]} cm</p>
+            <p className = {a.ti}>max: {dog[0].height[1]} cm</p>
         </div> : <p>Height not defined</p>} 
 
         {dog[0].weight ?<div>
-           <h4>Weight</h4>
-            <p>min: {dog[0].weight[0]}</p>
-            <p>max: {dog[0].weight[1]}</p>
+           <h5  className = {a.title}>Weight</h5>
+            <p className = {a.ti}>min: {dog[0].weight[0]} kg</p>
+            <p className = {a.ti}>max: {dog[0].weight[1]} kg</p>
         </div> : <p>Weight not defined</p>} 
-
-        <div className = 'divDietsNames'>
-           <h5>Temperamets:</h5>
-             {dog[0].temperaments?.map((f,i) =>(f.name ? <p key = {i}>{f.name}</p>: <p key ={i}>{f}</p>))}  
-          </div>
-       {/*<div className = 'dietypes2'>
-      {charaDet.occupation ?charaDet.occupation.map((f,i) =>  (f.name ? <p key = {i}>{f.name}</p>: <p key ={i}>{f}</p>)) : <> </>} 
-      </div>  
-        <div className ='scores'>
-         {charaDet.nickname ? <h5> {charaDet.nickname}</h5> : <> </> }
-         {charaDet.birthdate ? <h5> {charaDet.birthdate}</h5> : <> </> }
-         {charaDet.status ? <h5> {charaDet.status}</h5> : <> </> }
-      </div>   */}
-        </div> 
-      : <h1> Loading ...</h1> }
+           </div>
+      
+           <h5  className = {a.title2}>Temperamets:</h5>
+              <ul className = {a.ti2}>
+             {dog[0].temperaments.length? dog[0].temperaments?.map((f,i) =>(f.name ? <p key = {i}>{f.name}</p>: <li className = {a.title3} key ={i}>{f}</li>)): <p>Temperaments not defined</p>}  
+             </ul>
+         
+         </div> 
+         </div> 
+       </div> 
+      : <div> 
+         <h1 className= {a.loading}> Loading ...</h1>
+         </div> }
    
     
   </div>

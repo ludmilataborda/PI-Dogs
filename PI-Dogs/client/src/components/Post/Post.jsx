@@ -7,20 +7,37 @@ import i from'./Post.module.css'
 
 
 
-/*  function validate(input) { 
+function validate(input) { 
   let errors = {};
   if (!input.name) {
     errors.name = 'Name is required';
     //                     
-  }
-
-  if (!input.dishResume) {
-    errors.dishResume = 'Summary is required';
   } 
-  return errors;
-}; */
+/*   if(  input.length === 0) {
+  errors.temp = 'At least one temperament is required';
+  }  */
+/* if(!input.temperaments.length) {
+    errors.temperaments = 'At least one temperament is required';
+  }  */
+    return errors;
+};
 
+function validate2(input) {
+ let error2 = {};
+  if(!input.max) {
+   error2.max ='Required'
+  }
+ if(!input.min) {
+    error2.min ='Required'
+   }
 
+  return error2 
+}
+/* function val3(input) {
+   let err = '';
+ 
+ return err;
+ } */
 function Post() {
 
 const dispatch = useDispatch();
@@ -29,9 +46,9 @@ const [input, setInput] = useState({
     name: '',
     life_span:'',
     image:'',
-   temperaments:[]
    // createdindb: true,
  });
+ const [temperaments, setTemperaments] = useState([])
  const [weight, setWeight] = useState({
      max:'',
      min:''
@@ -40,9 +57,10 @@ const [input, setInput] = useState({
      max:'',
      min:''
 })
-/*   const [errors, setErrors] = useState({}) */
+const [errors, setErrors] = useState({})/* */
+const [errors2, setErrors2] = useState({})
+const [errHe, setErrHe] = useState({})
 
- 
  useEffect(() => {
        dispatch(getTemperaments())        
   },[dispatch]);
@@ -54,42 +72,46 @@ let temp = useSelector((state) => state.temperaments);
   function handleChange(e) { 
   setInput({...input, 
     [e.target.name]: e.target.value});
- //setErrors(validate({...input,[e.target.name]: e.target.value}));
+ setErrors(validate({...input,[e.target.name]: e.target.value}));
+
 }  
 function handleWeight (e) { 
   setWeight({...weight, 
     [e.target.name]: e.target.value});
-
+ setErrors2(validate2({...weight,[e.target.name]: e.target.value}));
 }  
 function handleHeight (e) { 
   setHeight({...height, 
     [e.target.name]: e.target.value});
+ setErrHe(validate2({...height, [e.target.name]: e.target.value}))
 
 }  
-function handleSelect(e){
-  setInput({
-      ...input,
-      temperaments: [...input.temperaments,e.target.value]
-  })
+ function handleSelect(e){
+  setTemperaments([ ...temperaments,e.target.value])
+
 }
 
+
+function handleTempDel(el) {
+  setTemperaments(temperaments.filter(f => f !== el ))
+} 
 function handleSubmit(e) {
   e.preventDefault()
-   
-  const send = {
-    ...input, 
+  if(!errors.name && !errors2.max && !errors2.min && !errHe.min && !errHe.max ) {
+    const send = {
+    ...input,
     weight: weight.min + ' - ' + weight.max,
-    height: height.min + ' - ' + height.max
+    height: height.min + ' - ' + height.max,
+    temperaments: temperaments
    }
 
    console.log(send)
    dispatch(postsDogstoBack(send))  
    alert("Dog created!!")
     setInput({
-        name:" ",
+        name:"",
         life_span:'',
          image:'',
-        temperaments:[]
     })
     setWeight({
       max:'',
@@ -99,7 +121,12 @@ function handleSubmit(e) {
       max:'',
       min:''
     })
-    history.push('/home')
+    history.push('/home') 
+  } 
+  else {
+  alert("Fill all require fields")
+
+  }
 } 
  /*  if(loading) {
       return <h2>Loading...</h2>
@@ -109,20 +136,22 @@ function handleSubmit(e) {
       
 
         <div className={i.byf}>
+          <>
            <Link to='/home' >
-            <button className={i.fill}> BACK </button>
+            <button type='button' className={i.fill}> BACK </button>
             </Link>
-
+     </>
         <div className={i.post}>
-         <div clasName={i.cont}>
-               <h2 className = 't6'>Fill to create your own dog</h2>
-             <form  onSubmit={(e)=>handleSubmit(e)}>
-             <div className= 'form'>
+         <div clasName={i.contimg}>
+           <img  src= "https://cdn.pixabay.com/photo/2017/09/25/13/12/cocker-spaniel-2785074_960_720.jpg" alt='img' />
+            <h2 className = {i.t6}>Create your own dog</h2>
+             </div> 
 
-             <div className = 'v1'> 
-             <label >Name: </label> 
+            <form  className= {i.form} onSubmit={(e)=>handleSubmit(e)}>
+             <div className = {i.input}> 
+             <label  className= {i.labels}>Name: </label> 
              <input
-              className = 'z1'
+              className ={i.fields}
            /* className = {errors.name ? 'danger' : 'z1'} */
 			        name='name'
               type= 'text'
@@ -130,91 +159,114 @@ function handleSubmit(e) {
 			    	  onChange={(e)=>handleChange(e)} 
 			    	  placeholder='Name'
 		         />
-            {/*   {errors.name && (<p className="danger">{errors.name}</p>)} */}
+         {errors.name && (<p className={i.danger}>{errors.name}</p>)} 
            </div>
              
-           <div className = 'v3'>
-           <label>Life span:</label> 
+           <div className =  {i.input}>
+           <label className= {i.labels}>Life span:</label> 
+           <div>
               <input
-                  /*className = {errors.dishResume ? 'danger' : 'z3'} */
-                  className = 'z3'
+                  className ={i.fieldsy}
                   type= 'text'
 				          name='life_span'
 				          value={input.life_span}
 				          onChange={(e)=>handleChange(e)} 
-			            placeholder='years'
+			            placeholder='ex : 12 - 15 '
 		            />
-         {/*   {errors.dishResume && (<p className="danger">{errors.dishResume}</p>)} */}
+              <label className= {i.labels2}>years</label> </div>
              </div>
 
-               <div className = 'v4'> 
-               <h4 className={i.t}>Weight:</h4> 
-               <label>min</label>
+               <div className = {i.input}> 
+               <label  className= {i.labels}>Weight:</label> 
+               <label  className= {i.labels1}>min</label>
+               <div>
                <input
-                 className ='z3'
-                 type= 'text'
+                className ={i.fieldsm}
+                 type= 'number'
 			           name='min'
 			    	     value={weight.min}
 				         onChange={(e)=>handleWeight(e)} 
 				         placeholder='min'
 		         	   />
-                <label>max</label>
+                <label className= {i.labels2}>kg</label> </div>
+                {errors2.min &&(<p className={i.danger}>{errors2.min}</p>)} 
+
+                <label className= {i.labels1}>max</label>
+                <div>
                <input
-                 className ='z3'
-                 type= 'text'
+                 className ={i.fieldsm}
+                 type= 'number'
 			           name='max'
 			    	     value={weight.max}
 				         onChange={(e)=>handleWeight(e)} 
 				         placeholder='max'
-		         	  />
+		         	  /> 
+                  <label className= {i.labels2}>kg</label> </div>
+                {errors2.max &&(<p className={i.danger}>{errors2.max}</p>)} 
             </div>
             
-            <div className = 'v4'> 
-               <h4>Height:</h4> 
-               <label>min</label>
+            <div className = {i.input}> 
+               <label className= {i.labels}>Height:</label> 
+               <label className= {i.labels1}>min</label>
+               <div>
+               
                <input
-                 className ='z3'
-                 type= 'text'
+                 className ={i.fieldsm}
+                 type= 'number'
 			           name='min'
 			    	     value={height.min}
 				         onChange={(e)=>handleHeight(e)} 
 				         placeholder='min'
 		         	   />
-                <label>max</label>
+                   <label className= {i.labels2}>cm</label> </div>
+                {errHe.min &&(<p className={i.danger}>{errHe.min}</p>)} 
+
+                <label className= {i.labels1}>max</label>
+              <div clasName= {i.rows}>
                <input
-                 className ='z3'
-                 type= 'text'
+                 className ={i.fieldsm}
+                 type= 'number'
 			           name='max'
 			    	     value={height.max}
 				         onChange={(e)=>handleHeight(e)} 
 				         placeholder='max'
 		         	  />
+                  <label className= {i.labels2}>cm</label> </div>
+                {errHe.max &&(<p className={i.danger}>{errHe.max}</p>)} 
             </div>
-          
-              <div className = 'v6'>
-              <label>Image:</label> 
+            <div className =  {i.input}>
+              <label className= {i.labels}>Choose Temperaments:</label>
+              <select className={i.select1} onChange={(e) => handleSelect(e)}>
+               {temp.map((o, i) => (
+                   <option key ={i} value={o.name}>{o.name}</option>
+                ))}
+                </select>
+               </div> 
+      
+              <div className={i.inTemp}>
+                { temperaments.map(el => 
+                
+                  <div className={i.me}>
+                    <p className={i.pp} key = {el}>{el}</p>
+                    <button className= {i.bt} type='button' onClick ={()=>handleTempDel(el)} >x</button>
+                 
+                  </div>)}</div> 
+              <div className =  {i.input}>
+              <label className= {i.labels}>Image:</label> 
 		     	    <input
-               className='z6'
+               className ={i.fields}
 			   	      name='image'
 			          value={input.image}
 			          onChange={(e)=>handleChange(e)}
 			   	      placeholder='image'
 			         />
           </div>
-               
-              <label>Choose Temperaments:</label>
-              <select  onChange={(e) => handleSelect(e)}>
-               {temp.map((o, i) => (
-                   <option key ={i} value={o.name}>{o.name}</option>
-                ))}
-                </select>
-                <ul><li>{input.temperaments.map(el => el + " ,")}</li></ul> 
-
-            <button className='b8' type="submit">send</button>  
-			  </div> 
+                 
+            <button className={i.b} type="submit">send</button>  
+		
           </form> 
          
-        </div>
+      
          </div>
       </div>
     );

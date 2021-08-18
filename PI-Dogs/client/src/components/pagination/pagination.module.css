@@ -2,18 +2,14 @@
 
 .pagination  {
     list-style:none;
-    display: flex;
-    flex-direction:row;
+     display: flex;
+     flex-direction: row;
      margin-top: 50px;
-    margin-left: 320px;
-    width: 500px;
+   /*  width: 500px; */
     height: 70px;
     justify-content: space-between;
-    
+    margin-left: 200px;    
 }
-/* .numberStyles a:hover:not(.active) {
-    background-color: #ddd;} */
-
 
 .center{
     text-align:center;
@@ -26,14 +22,15 @@
     font-size: 17px;
     font-weight:10;
      margin-bottom:60px;
-     background-color:#D0D1FF;
-   /*  border: 1px solid black; */
-}
-
-  
+     background-color:hsl(9, 32%, 92%);
     
+}
  .numberStyles:hover {
             color:black;
             background-color: rgb(169, 214, 229);
             border: 2px solid rgb(132, 205, 230);
         }
+
+
+  
+    
