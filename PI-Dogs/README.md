@@ -57,7 +57,7 @@
 🟨Detalles de los perros
 </h2>
 <p align="left">
-  <img height="400" src="./img_deploy/detail.jpeg" />
+  <img height="400" src="./img.deploy/detail.jpeg" />
 </p>
 <br>
 <br>
