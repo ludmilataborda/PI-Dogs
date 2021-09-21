@@ -39,6 +39,8 @@ router.get('/', async function(req, res) {
            return  res.json(result)
        }
    }); 
+/*  */
+
 
 router.post('/',async function(req, res) {
     const {name, height,weight,life_span,image,createdindb, temperaments} = req.body;
@@ -82,7 +84,13 @@ router.post('/',async function(req, res) {
           else {  return  res.json(dog)}  
           
  });
-
+router.get('/pr', function(req, res) {
+  both().then(result => {
+    var info = result 
+    res.send(info)
+  })
+ 
+})
 module.exports =  router;
 
 

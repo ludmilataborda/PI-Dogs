@@ -25,8 +25,8 @@ router.get('/', async function(req, res) {
    await tempera()
 
    const temperament = await Temperament.findAll()
-    const r = temperament.map(e => e.name)
-     console.log(r)
+    /* const r = temperament.map(e => e.name)
+     console.log(r) */
         res.send(temperament)
     }); 
 

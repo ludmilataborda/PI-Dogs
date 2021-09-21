@@ -2,16 +2,20 @@ const { Dog, Temperament} = require('../db.js');
 const axios = require('axios');
 const { YOUR_API_KEY } = process.env;
 
+
+
 const lbtoKg = (weight) =>{ 
-  let weight1 = weight.split(" - ") //divido el string que recibo como dato
+  let weight1 = weight.split(" - ") 
   var a,b;
-  if(isNaN(parseInt(weight1[0]))) a = 18; else a=parseInt(weight1[0]) // un caso especial en que el peso minimo es "up"
-  if(isNaN(parseInt(weight1[1]))) b = a; else b=parseInt(weight1[1]) // casos donde no haya un peso maximo
+  if(isNaN(parseInt(weight1[0]))) a = 18; else a=parseInt(weight1[0]) //  peso minimo es "up"
+  if(isNaN(parseInt(weight1[1]))) b = a; else b=parseInt(weight1[1]) //no haya un peso maximo
   a = Math.floor(a * 0.453592)
   b = Math.ceil(b * 0.453592)
   var fw = [a,b].join(" - ") 
   return fw;
 }
+
+
  const infoapi = async () => {
     const obj = await axios.get('https://api.thedogapi.com/v1/breeds?api_key=' + YOUR_API_KEY); 
    const results = obj.data
@@ -31,7 +35,6 @@ const lbtoKg = (weight) =>{
   return arr;  
 
   } 
-
 
 
 const dbInfo = async () => {
@@ -71,13 +74,11 @@ const dbInfo = async () => {
       }
   
 const both = async () => {
-    const info = await infoapi();
-    const db = await dbInfo();
-    const unidos = db.concat(info)
-    return unidos;
+   const info = await infoapi();
+  const db = await dbInfo();
+  const unidos = db.concat(info)
+   return unidos;
   } 
-
-
 
 const p = async () => {
     const info = await infoapi();
