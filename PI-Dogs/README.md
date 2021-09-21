@@ -43,11 +43,11 @@
 🟨Crear una raza de perro
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/Create_dog.jpeg" />
+  <img height="400" src="./img.deploy/Create_Dog.jpeg" />
 </p>
 <br>
 <p align="left">
-  <img height="400" src="./img.deploy/create_dog(2).jpeg" />
+  <img height="400" src="./img.deploy/crate_dog(2).jpeg" />
 </p>
 <br>
 <h2 align="left">
