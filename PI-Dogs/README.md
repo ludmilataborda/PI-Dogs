@@ -1,8 +1,5 @@
 # Proyecto Individual - Henry Dogs
 
-<p align="left">
-  <img height="100" src="./imgReadme/doglogo.png" />
-</p>
 
 ## Objetivos del Proyecto
 
@@ -25,32 +22,32 @@
 🟨Landing Page
 </h2>
 <p align="left">
-  <img height="400" src="./landing.jpeg" />
+  <img height="400" src="./img.deploy/landing.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Home
 </h2>
 <p align="left">
-  <img height="400" src="./main.jpeg" />
+  <img height="400" src="./img.deploy/main.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Filter
 </h2>
 <p align="left">
-  <img height="400" src="./filter.jpeg" />
+  <img height="400" src="./img.deploy/filter.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Crear una raza de perro
 </h2>
 <p align="left">
-  <img height="400" src="./Create_dog.jpeg" />
+  <img height="400" src="./img.deploy/Create_dog.jpeg" />
 </p>
 <br>
 <p align="left">
-  <img height="400" src="./create_dog(2).jpeg" />
+  <img height="400" src="./img.deploy/create_dog(2).jpeg" />
 </p>
 <br>
 <h2 align="left">
