@@ -1,14 +1,13 @@
 # Proyecto Individual - Henry Dogs
-
+Aquí pude desarrollar una aplicación que me traiga información de razas de perros en llamados a una Api, los cuales los he almacenado en mi entorno de Back-End y preparado la información para poder requerirlas desde mi entorno de Front-End. Asimismo se creo una base de datos usando Postgres en la cual se guardan peroos creados desde un formulario en el Front. En esta sección, utilicé varios filtrados para poder adaptar mi búsqueda según mis gustos.Pudiendo cambiar entre la fuente de la información, ya sea desde la API con todas las razas traidas, como también de mi base de datos con las razas creadas. Pudiendo utilizar tanto el ordenamiento de A-Z, Z-A como también de mayor peso a menor y de menor a mayor peso.
 
 ## Objetivos del Proyecto
 
-- Construir una App utlizando React, Redux, Node y Sequelize.
-- Afirmar y conectar los conceptos aprendidos en la carrera.
+- Construir una App utlizando React, Redux, Node, Postgres y Sequelize.
 - Aprender mejores prácticas.
 - Aprender y practicar el workflow de GIT.
 - Usar y practicar testing.
-- El proyecto tendrá una duración máxima de tres semanas.
+
 
 #### Tecnologías utilizadas:
 - [ ] React
