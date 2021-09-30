@@ -22,32 +22,32 @@ Aquí pude desarrollar una aplicación que me traiga información de razas de pe
 🟨Landing Page
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/landing.jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/landing.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Home
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/main.jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/main.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Filter
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/filter.jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/filter.jpeg" />
 </p>
 <br>
 <h2 align="left">
 🟨Crear una raza de perro
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/Create_Dog.jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/Create_Dog.jpeg" />
 </p>
 <br>
 <p align="left">
-  <img height="400" src="./img.deploy/crate_dog(2).jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/crate_dog(2).jpeg" />
 </p>
 <br>
 <h2 align="left">
