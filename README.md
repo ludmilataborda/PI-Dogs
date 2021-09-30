@@ -54,7 +54,7 @@ Aquí pude desarrollar una aplicación que me traiga información de razas de pe
 🟨Detalles de los perros
 </h2>
 <p align="left">
-  <img height="400" src="./img.deploy/detail.jpeg" />
+  <img height="400" src="./PI-Dogs/img.deploy/detail.jpeg" />
 </p>
 <br>
 <br>
