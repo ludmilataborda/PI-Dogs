@@ -38,7 +38,7 @@ function rootReducer(state= initialState, action){
          case SORTBY_WEIGHT:
             const sorts2 = (str, arr) => {
                  if(str === 'desc') {//mayor a men
-                    return arr.sort((unaMascota, otraMascota) => otraMascota.life_span.split('-')[0] + otraMascota.life_span.split('-')[1]/2 -unaMascota.life_span.split('-')[0] + unaMascota.life_span.split('-')[1]/2 )  ;
+                    return arr.sort((unaMascota, otraMascota) => otraMascota.weight[1] - unaMascota.weight[1]);
                  }
                  if(str === 'asc') { //men a may
                    return arr.sort((unaMascota, otraMascota) => unaMascota.weight[1] - otraMascota.weight[1]);  
